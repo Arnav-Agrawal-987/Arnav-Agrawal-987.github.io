@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-void: #000000;
+        --color-room-bg: #1a1a1a;
+        --color-room-wall: #2e2e2e;
+        --color-room-floor: #232323;
+        --color-room-roof: #323232;
+        --color-hologram-cyan: #00f2ff;
+    }
+
+    .light {
+        --color-void: #ffffff;
+        --color-room-bg: #e4e4e4;
+        --color-room-wall: #d3d3d3;
+        --color-room-floor: #c2c2c2;
+        --color-room-roof: #dfdfdf;
+        --color-hologram-cyan: #0369a1;
+    }
+
+    body {
+        @apply m-0 overflow-hidden font-tech;
+    }
+}
