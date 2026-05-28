@@ -25,3 +25,14 @@
         @apply m-0 overflow-hidden font-tech;
     }
 }
+
+@layer utilities {
+  @keyframes energy-pulse {
+    0%, 100% { opacity: 0.3; filter: drop-shadow(0 0 2px var(--color-hologram-cyan)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 8px var(--color-hologram-cyan)); }
+  }
+
+  .animate-pulse-flow {
+    animation: energy-pulse 3s infinite ease-in-out;
+  }
+}
