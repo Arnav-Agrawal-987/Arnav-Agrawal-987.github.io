@@ -3,33 +3,42 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --color-void: #000000;
-        --color-room-bg: #1a1a1a;
-        --color-room-wall: #2e2e2e;
-        --color-room-floor: #232323;
-        --color-room-roof: #323232;
-        --color-hologram-cyan: #00f2ff;
-    }
+  :root {
+    --color-void: #020617;
+    --color-room-bg: #0a142c;
+    --color-room-wall: #16365f;
+    --color-room-floor: #132f53;
+    --color-room-roof: #1b4274;
+    --color-hologram-cyan: #38bdf8;
+  }
 
-    .light {
-        --color-void: #ffffff;
-        --color-room-bg: #e4e4e4;
-        --color-room-wall: #d3d3d3;
-        --color-room-floor: #c2c2c2;
-        --color-room-roof: #dfdfdf;
-        --color-hologram-cyan: #0369a1;
-    }
+  .light {
+    --color-void: #ffffff;
+    --color-room-bg: #e4e4e4;
+    --color-room-wall: #d3d3d3;
+    --color-room-floor: #c2c2c2;
+    --color-room-roof: #dfdfdf;
+    --color-hologram-cyan: #221a7a;
+  }
 
-    body {
-        @apply m-0 overflow-hidden font-tech;
-    }
+  body {
+    @apply m-0 overflow-hidden font-tech;
+  }
 }
 
 @layer utilities {
   @keyframes energy-pulse {
-    0%, 100% { opacity: 0.3; filter: drop-shadow(0 0 2px var(--color-hologram-cyan)); }
-    50% { opacity: 1; filter: drop-shadow(0 0 8px var(--color-hologram-cyan)); }
+
+    0%,
+    100% {
+      opacity: 0.3;
+      filter: drop-shadow(0 0 2px var(--color-hologram-cyan));
+    }
+
+    50% {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px var(--color-hologram-cyan));
+    }
   }
 
   .animate-pulse-flow {
