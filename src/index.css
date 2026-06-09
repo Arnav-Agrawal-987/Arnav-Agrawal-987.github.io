@@ -9,7 +9,15 @@
     --color-room-wall: #16365f;
     --color-room-floor: #132f53;
     --color-room-roof: #1b4274;
-    --color-hologram-cyan: #38bdf8;
+
+    --color-hologram-moderate: #38bdf8;
+    --color-hologram-dim: #0e7490;
+    --color-hologram-bright: #67e8f9;
+
+    --color-button-border: #d3d1ff;
+    --color-button-bg: #f3ebff1d;
+    --color-button-text: #f3ebff;
+    --color-button-hover: #ffffff3a;
   }
 
   .light {
@@ -18,7 +26,15 @@
     --color-room-wall: #d3d3d3;
     --color-room-floor: #c2c2c2;
     --color-room-roof: #dfdfdf;
-    --color-hologram-cyan: #221a7a;
+
+    --color-hologram-moderate: #221a7a;
+    --color-hologram-dim: #1e1466;
+    --color-hologram-bright: #2e1f8c;
+
+    --color-button-border: #1e1466;
+    --color-button-bg: #1e1466;
+    --color-button-text: #ffffff;
+    --color-button-hover: #1e1466;
   }
 
   body {
@@ -32,12 +48,12 @@
     0%,
     100% {
       opacity: 0.3;
-      filter: drop-shadow(0 0 2px var(--color-hologram-cyan));
+      filter: drop-shadow(0 0 2px var(--color-hologram-moderate));
     }
 
     50% {
       opacity: 1;
-      filter: drop-shadow(0 0 8px var(--color-hologram-cyan));
+      filter: drop-shadow(0 0 8px var(--color-hologram-moderate));
     }
   }
 

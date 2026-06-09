@@ -13,9 +13,15 @@ export default {
           roof: 'var(--color-room-roof)',
         },
         hologram: {
-          cyan: 'var(--color-hologram-cyan)',
-          dim: '#00666b',
-          bright: '#ccfaff',
+          moderate: 'var(--color-hologram-moderate)',
+          dim: 'var(--color-hologram-dim)',
+          bright: 'var(--color-hologram-bright)',
+        },
+        button: {
+          border: 'var(--color-button-border)',
+          bg: 'var(--color-button-bg)',
+          text: 'var(--color-button-text)',
+          hover: 'var(--color-button-hover)',
         },
       },
       dropShadow: {
