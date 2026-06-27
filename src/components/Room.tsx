@@ -49,13 +49,13 @@ export default function Room({ pipeProgress }: { pipeProgress: MotionValue<numbe
                 d={pathConfig.d}
                 fill="none"
                 stroke="var(--color-room-bg)"
-                className="text-hologram-moderate/10"
+                className="text-hologram-dim/10"
                 strokeWidth={pathConfig.strokeWidth}
               />
               <motion.path
                 d={pathConfig.d}
                 fill="none"
-                stroke="var(--color-hologram-moderate)"
+                stroke="var(--color-hologram-dim)"
                 strokeWidth={pathConfig.strokeWidth}
                 strokeLinecap="square"
                 className="animate-pulse-flow"
@@ -68,7 +68,7 @@ export default function Room({ pipeProgress }: { pipeProgress: MotionValue<numbe
               <path
                 d={pathConfig.d}
                 fill="none"
-                stroke="var(--color-hologram-moderate)"
+                stroke="var(--color-hologram-dim)"
                 className="animate-pulse-flow"
                 strokeWidth={pathConfig.strokeWidth}
               />
@@ -85,13 +85,13 @@ export default function Room({ pipeProgress }: { pipeProgress: MotionValue<numbe
                 d={pathConfig.d}
                 fill="none"
                 stroke="var(--color-room-bg)"
-                className="text-hologram-moderate/10"
+                className="text-hologram-dim/10"
                 strokeWidth={pathConfig.strokeWidth}
               />
               <motion.path
                 d={pathConfig.d}
                 fill="none"
-                stroke="var(--color-hologram-moderate)"
+                stroke="var(--color-hologram-dim)"
                 strokeWidth={pathConfig.strokeWidth}
                 strokeLinecap="square"
                 className="animate-pulse-flow"
@@ -104,7 +104,7 @@ export default function Room({ pipeProgress }: { pipeProgress: MotionValue<numbe
               <path
                 d={pathConfig.d}
                 fill="none"
-                stroke="var(--color-hologram-moderate)"
+                stroke="var(--color-hologram-dim)"
                 className="animate-pulse-flow"
                 strokeWidth={pathConfig.strokeWidth}
               />

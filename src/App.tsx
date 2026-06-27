@@ -60,7 +60,7 @@ export default function App() {
   return (
     <main className="w-screen h-screen flex items-center justify-center overflow-hidden bg-room-bg" style={{ perspective: `${PERSPECTIVE}px` }}>
       
-      <HUD isDark={isDark} setIsDark={setIsDark} currentIndex={currentIndex} totalNodes={N} />
+      <HUD isDark={isDark} setIsDark={setIsDark} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} totalNodes={N} />
 
       <motion.div className="relative w-full h-full" style={{ translateZ: zeroCamera, transformStyle: "preserve-3d" }}>
         
