@@ -1,4 +1,4 @@
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, FileDown } from 'lucide-react';
 import TiltCard from './Tiltcard';
 
 interface HUDProps {
@@ -18,6 +18,7 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
   };
   return (
     <>
+      {/*Arrow SVG*/}
       <svg className="hidden">
         <defs>
           <g id="hud-arrow" strokeWidth={1.75}>
@@ -25,6 +26,11 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
           </g>
         </defs>
       </svg>
+
+      {/*Profile*/}
+      
+
+      {/*Theme Button*/}
       <TiltCard glowColor="var(--color-button-hover)" glowClipPath="polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0% calc(100% - 15px))" className="absolute top-4 right-4 z-10 md:hover:scale-105 transition duration-5">
         <button
           onClick={() => setIsDark(prev => !prev)}
@@ -36,6 +42,8 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
         <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 13px) 0, 100% 0, 100% 13px)" }}></div>
         <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 20px) 0, calc(100% - 17px) 0, 100% 17px, 100% 20px)" }}></div>
       </TiltCard>
+
+      {/*Checkpoint Indicators*/}
       <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 select-none">
         <div className="flex flex-col gap-5 my-2">
           {Array.from({ length: totalNodes }).map((_, idx) => {
@@ -56,6 +64,8 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
           })}
         </div>
       </div>
+
+      {/*Checkpoint Controls*/}
       <TiltCard maxTilt={15} glowColor="var(--color-button-hover)" glowClipPath="polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px calc(100% - 20px), 10px 20px)" className="absolute right-6 top-1/2 -translate-y-1/2 z-50 hover:scale-105 transition duration-5">
         <div className="flex flex-col gap-8 items-center border border-button-border bg-button-bg py-3 pr-1 pl-3" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px calc(100% - 20px), 10px 20px)" }}>
           <svg className={`w-[50px] h-[50px] -rotate-90 stroke-button-text ${currentIndex === 0 ? "opacity-50" : "opacity-100"} cursor-pointer transition hover:scale-105`} onClick={previousCheckpoint}>
@@ -69,9 +79,26 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
         {/* <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 13px) 0, 100% 0, 100% 13px)" }}></div> */}
         {/* <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 20px) 0, calc(100% - 17px) 0, 100% 17px, 100% 20px)" }}></div> */}
       </TiltCard>
-      {/* <div className="absolute bottom-4 left-4 z-50 font-mono text-[10px] text-hologram-moderate/60 tracking-widest bg-room-bg/40 backdrop-blur px-3 py-1 border border-hologram-moderate/20 rounded">
-        SYS_LOC // <span className="text-hologram-moderate font-bold">0{currentIndex} / 0{totalNodes - 1}</span>
-      </div> */}
+
+      {/*Resume Button*/}
+      <TiltCard
+        className="absolute bottom-4 right-4 z-10 md:hover:scale-105 transition duration-5"
+        glowClipPath="polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)"
+      >
+        <a
+          href="/Resume_Arnav_Agrawal.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center bg-button-bg text-button-text border border-button-border px-3 md:px-5 py-2 md:py-1 hover:bg-button-hover transition group"
+          style={{ clipPath: "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)" }}
+        >
+          <FileDown className="w-5 h-5 md:hidden text-hologram-moderate group-hover:-translate-y-0.5 transition-transform duration-200" strokeWidth={2} />
+          <span className="hidden md:inline">Extract Data</span>
+        </a>
+
+        <div className="absolute left-0 bottom-0 bg-button-border w-full h-full pointer-events-none" style={{ clipPath: "polygon(0 calc(100% - 12px), 12px 100%, 11px 100%, 0 calc(100% - 11px))" }}></div>
+        <div className="absolute right-0 top-0 bg-button-border w-full h-full pointer-events-none" style={{ clipPath: "polygon(calc(100% - 15px) 0, 100% 0, 100% 15px, calc(100% - 2px) 15px, calc(100% - 2px) 2px, calc(100% - 15px) 2px)" }}></div>
+      </TiltCard>
     </>
   );
 }

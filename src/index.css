@@ -14,9 +14,9 @@
     --color-hologram-dim: #0e7490;
     --color-hologram-bright: #67e8f9;
 
-    --color-button-border: hsl(243, 100%, 91%);
+    --color-button-border: #d3d1ff;
     --color-button-bg: #f3ebff1d;
-    --color-button-text: hsl(264, 100%, 93%);
+    --color-button-text: #eadbff;
     --color-button-text-disabled: #a19caa;
     --color-button-hover: #ffffff3a;
   }
