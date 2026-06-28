@@ -21,7 +21,7 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
       <svg className="hidden">
         <defs>
           <g id="hud-arrow" strokeWidth={1.75}>
-            <path d="M 0,10 l 30,0 l 15,15 l -15,15 l -30,0 l 10,0 l 15,-15 l -15,-15 l 10,0 l 15,15 l -15,15" fill="none"/>
+            <path d="M 0,10 l 30,0 l 15,15 l -15,15 l -30,0 l 10,0 l 15,-15 l -15,-15 l 10,0 l 15,15 l -15,15" fill="none" />
           </g>
         </defs>
       </svg>
@@ -37,40 +37,33 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
         <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 20px) 0, calc(100% - 17px) 0, 100% 17px, 100% 20px)" }}></div>
       </TiltCard>
       <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 select-none">
-        <div className="flex flex-col gap-1.5 my-2">
-          {Array.from({ length: totalNodes }).map((_, idx) => (
-            <div
-              key={`node-tick-${idx}`}
-              className={`w-[3px] transition-all duration-500 border border-hologram-moderate ${idx === currentIndex ? 'h-4 bg-hologram-moderate' : 'h-1.5 bg-hologram-moderate/30'}`}
-            />
-          ))}
+        <div className="flex flex-col gap-5 my-2">
+          {Array.from({ length: totalNodes }).map((_, idx) => {
+            const isActive = idx === currentIndex;
+            const hexagonClip = { clipPath: "polygon(0 7px, 50% 0, 100% 7px, 100% calc(100% - 7px), 50% 100%, 0 calc(100% - 7px))" };
+
+            return (
+              <TiltCard
+                key={`node-tick-${idx}`}
+                maxTilt={0}
+                className={`w-3.5 transition-all duration-500 border border-button-border border-[1.5px] ${isActive ? 'h-16 bg-button-bg' : 'h-3.5 bg-button-bg hover:bg-button-hover cursor-pointer'}`}
+                style={hexagonClip}
+                onClick={() => setCurrentIndex(idx)}
+              >
+                <div className="w-full h-full" />
+              </TiltCard>
+            );
+          })}
         </div>
       </div>
       <TiltCard maxTilt={15} glowColor="var(--color-button-hover)" glowClipPath="polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px calc(100% - 20px), 10px 20px)" className="absolute right-6 top-1/2 -translate-y-1/2 z-50 hover:scale-105 transition duration-5">
         <div className="flex flex-col gap-8 items-center border border-button-border bg-button-bg py-3 pr-1 pl-3" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px calc(100% - 20px), 10px 20px)" }}>
-          <svg className={`w-[50px] h-[50px] -rotate-90 stroke-button-text ${currentIndex === 0?"opacity-50":"opacity-100"} cursor-pointer transition hover:scale-105`} onClick={previousCheckpoint}>
-            <use href="#hud-arrow"/>
+          <svg className={`w-[50px] h-[50px] -rotate-90 stroke-button-text ${currentIndex === 0 ? "opacity-50" : "opacity-100"} cursor-pointer transition hover:scale-105`} onClick={previousCheckpoint}>
+            <use href="#hud-arrow" />
           </svg>
-          <svg className={`w-[50px] h-[50px] rotate-90 stroke-button-text ${currentIndex === totalNodes - 1?"opacity-50":"opacity-100"} cursor-pointer transition hover:scale-105`} onClick={nextCheckpoint}>
-            <use href="#hud-arrow"/>
+          <svg className={`w-[50px] h-[50px] rotate-90 stroke-button-text ${currentIndex === totalNodes - 1 ? "opacity-50" : "opacity-100"} cursor-pointer transition hover:scale-105`} onClick={nextCheckpoint}>
+            <use href="#hud-arrow" />
           </svg>
-          {/* <button
-            onClick={previousCheckpoint}
-            disabled={currentIndex === 0}
-            className="w-10 h-10 border border-button-border bg-button-bg text-button-text flex items-center justify-center transition hover:bg-button-hover disabled:opacity-20 disabled:pointer-events-none group"
-            style={{ clipPath: arrowClip }}
-          >
-            <ChevronUp className="w-4 h-4 text-hologram-moderate group-hover:scale-110 transition-transform" strokeWidth={2.5} />
-          </button>
-
-          <button
-            onClick={nextCheckpoint}
-            disabled={currentIndex === totalNodes - 1}
-            className="w-10 h-10 border border-button-border bg-button-bg text-button-text flex items-center justify-center transition hover:bg-button-hover disabled:opacity-20 disabled:pointer-events-none group"
-            style={{ clipPath: arrowClip }}
-          >
-            <ChevronDown className="w-4 h-4 text-hologram-moderate group-hover:scale-110 transition-transform" strokeWidth={2.5} />
-          </button> */}
         </div>
         <div className="absolute left-0 bottom-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(0 100%, 10px calc(100% - 20px), 10px 20px, 0 0, 1px 0, 11px 20px, 11px calc(100% - 20px), 1px 100%)" }}></div>
         {/* <div className="absolute right-0 top-0 bg-button-border w-full h-full" style={{ clipPath: "polygon(calc(100% - 13px) 0, 100% 0, 100% 13px)" }}></div> */}
