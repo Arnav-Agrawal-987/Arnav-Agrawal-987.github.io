@@ -1,6 +1,7 @@
 import { Sun, Moon, FileDown } from 'lucide-react';
 import TiltCard from './Tiltcard';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HUDProps {
   isDark: boolean;
@@ -107,65 +108,128 @@ export default function HUD({ isDark, setIsDark, currentIndex, setCurrentIndex, 
           </TiltCard>
         </div>
 
-        {/*Clock*/}
-        <div className="flex gap-1.5 mt-0.5 h-16">
-          <TiltCard maxTilt={0} className="w-20 h-20 bg-button-bg border border-button-border flex items-center justify-center overflow-visible">
+        {/* Telemetry Clock & Date System */}
+        <div
+          className="flex gap-1.5 mt-0.5 h-16 cursor-pointer group"
+          onClick={() => setClockType(prev => prev === 'analog' ? 'digital' : 'analog')}
+        >
+          {/* Clock */}
+          <TiltCard
+            maxTilt={0}
+            className="w-20 h-20 bg-button-bg border border-button-border flex items-center justify-center overflow-visible"
+          >
             {mounted && (
-              clockType === 'analog' ? (
-                <AnalogueFace time={time} />
-              ) : (
-                <div className="flex flex-col gap-0 items-center z-10 p-2">
-                  <div className="flex gap-0 items-center">
-                    <SegmentDigit value={Math.floor(time.getHours() / 10)} />
-                    <SegmentDigit value={time.getHours() % 10} />
-                  </div>
-                  <div className="flex gap-0 items-center">
-                    <SegmentDigit value={Math.floor(time.getMinutes() / 10)} />
-                    <SegmentDigit value={time.getMinutes() % 10} />
-                  </div>
-                </div>
-              )
+              <AnimatePresence mode="wait">
+                {clockType === 'analog' ? (
+                  <motion.div
+                    key="analog-clock"
+                    initial={{ rotateY: -90 }}
+                    animate={{
+                      rotateY: 0,
+                      transition: { duration: 0.5, ease: "easeInOut" }
+                    }}
+                    exit={{
+                      rotateY: 90,
+                      transition: { duration: 0.5, delay: 0.75, ease: "easeInOut" }
+                    }}
+                    className="w-full h-full"
+                  >
+                    <AnalogueFace time={time} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="digital-clock"
+                    initial={{ rotateY: -90 }}
+                    animate={{
+                      rotateY: 0,
+                      transition: { duration: 0.5, ease: "easeInOut" }
+                    }}
+                    exit={{
+                      rotateY: 90,
+                      transition: { duration: 0.5, delay: 0.75, ease: "easeInOut" }
+                    }}
+                    className="w-full h-full flex flex-col gap-0 items-center p-2"
+                  >
+                    <div className="flex gap-0 items-center">
+                      <SegmentDigit value={Math.floor(time.getHours() / 10)} />
+                      <SegmentDigit value={time.getHours() % 10} />
+                    </div>
+                    <div className="flex gap-0 items-center">
+                      <SegmentDigit value={Math.floor(time.getMinutes() / 10)} />
+                      <SegmentDigit value={time.getMinutes() % 10} />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             )}
           </TiltCard>
 
-          {/*Date*/}
+          {/* Date */}
           <TiltCard
             maxTilt={0}
-            className="h-20 w-36 bg-button-bg border border-button-border border-l-4"
+            className="h-20 w-36 bg-button-bg border border-button-border border-l-4 overflow-hidden"
             style={{ clipPath: "polygon(0 0, 100% 0, calc(100% - 45px) 100%, 0 100%)" }}
           >
-            {mounted && clockType === 'analog' ? (
-              <div className="h-full w-full flex items-center pl-1 gap-1.5">
-                <div className="text-button-text text-5xl tracking-tighter mt-1">
-                  {dateNum}
-                </div>
-                <div className="flex flex-col">
-                  <div className="text-button-text font-mono text-3xl mt-0.5">
-                    {monthStr}
-                  </div>
-                  <div className="text-button-text text-xs tracking-widest -translate-y-1 ml-0.5 opacity-80">
-                    {yearNum}
-                  </div>
-                </div>
-              </div>
-            ) : mounted && (
-              <div className="h-full w-full flex">
-                <div className="flex flex-col pt-1">
-                  <div className="flex w-20">
-                    <SegmentDigit value={parseInt(dateNum[0])}/>
-                    <SegmentDigit value={parseInt(dateNum[1])} />
-                  </div>
-                  <div className="flex w-full justify-center text-button-text tracking-widest text-3xl">
-                    {monthStr}
-                  </div>
-                </div>
-                <div className="flex flex-col w-5 py-1 gap-1">
-                  <SegmentDigit value={parseInt(yearNum[0])} />
-                  <SegmentDigit value={parseInt(yearNum[1])} />
-                  <SegmentDigit value={parseInt(yearNum[2])} />
-                  <SegmentDigit value={parseInt(yearNum[3])} />
-                </div>
-              </div>
+            {mounted && (
+              <AnimatePresence mode="wait">
+                {clockType === 'analog' ? (
+                  <motion.div
+                    key="analog-date"
+                    initial={{ x: -120 }}
+                    animate={{
+                      x: 0,
+                      transition: { duration: 1, delay: 0.5, ease: "easeOut" }
+                    }}
+                    exit={{
+                      x: -120,
+                      transition: { duration: 1, ease: "easeIn" }
+                    }}
+                    className="h-full w-full flex items-center pl-1 gap-1.5"
+                  >
+                    <div className="text-button-text text-5xl tracking-tighter mt-1">
+                      {dateNum}
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-button-text font-mono text-3xl mt-0.5">
+                        {monthStr}
+                      </div>
+                      <div className="text-button-text text-xs tracking-widest -translate-y-1 ml-0.5 opacity-80">
+                        {yearNum}
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="digital-date"
+                    initial={{ x: -120 }}
+                    animate={{
+                      x: 0,
+                      transition: { duration: 1, delay: 0.5, ease: "easeOut" }
+                    }}
+                    exit={{
+                      x: -120,
+                      transition: { duration: 1, ease: "easeIn" }
+                    }}
+                    className="h-full w-full flex"
+                  >
+                    <div className="flex flex-col pt-1">
+                      <div className="flex w-20">
+                        <SegmentDigit value={parseInt(String(dateNum)[0])} />
+                        <SegmentDigit value={parseInt(String(dateNum)[1])} />
+                      </div>
+                      <div className="flex w-full justify-center text-button-text tracking-widest text-3xl">
+                        {monthStr}
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-5 py-1 gap-1">
+                      <SegmentDigit value={parseInt(String(yearNum)[0])} />
+                      <SegmentDigit value={parseInt(String(yearNum)[1])} />
+                      <SegmentDigit value={parseInt(String(yearNum)[2])} />
+                      <SegmentDigit value={parseInt(String(yearNum)[3])} />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             )}
           </TiltCard>
         </div>
